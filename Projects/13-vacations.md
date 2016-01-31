@@ -1,4 +1,4 @@
-# 12. Puhkuste planeerimine
+# 13. Puhkuste planeerimine
 
 ## Projekti ülesanne aines Võrgurakendused I
 
@@ -14,56 +14,39 @@
 ### Lahendus
 
   * Registreeritud kasutaja saab näha kõiki registreeritud puhkuseid ühe nimekirjana
-  * Kasutaja nimel klikkides avaneb kasutaja puhkuste detailvaade
-  * Detailvaates näeb pinna kirjeldust ja broneeringute nimekirja (algus, lõpp)
-  * Samas on ka broneeringu tegemise vorm: tekstilahter algusajaga, tekstilahter lõpuajaga ning nupp broneeringu kinnitamiseks. Broneering kinnitatakse kui see ei kattu ühegi varasema broneeringuga
+  * Samas on ka broneeringu tegemise vorm: tekstilahter algusajaga, tekstilahter lõpuajaga ning nupp broneeringu kinnitamiseks. Broneering kinnitatakse kui see ei kattu ühegi teise puhkusega. Samuti ei saa kasutaja kohta lisada rohkem kui 28 puhkusepäeva (ei pea olema ühes osas)
 
-> Väljade vormingu kontroll ei ole oluline, eeldame et broneeringu ajad sisestatakse alati kindlas formaadis (n. `YYYY-MM-DD HH:mm`)
+> Väljade vormingu kontroll ei ole oluline, eeldame et broneeringu ajad sisestatakse alati kindlas formaadis (n. `YYYY-MM-DD`)
 
-Aja võrdlemiseks võib kasutada nii vastavat SQL lauset, aga võib ka laadida baasist kõikide broneeringute andmed ja neid ükshaaval PHP skriptis soovitud aja vastu võrrelda - kui kasvõi üks aeg osaliselt kattub, siis ei saa broneeringut kinnitada.
+Aja võrdlemiseks võib kasutada nii vastavat SQL lauset, aga võib ka laadida baasist kõikide broneeringute andmed ja neid ükshaaval PHP skriptis soovitud aja vastu võrrelda - kui kasvõi üks aeg osaliselt kattub, siis ei saa puhkuse broneeringut kinnitada. Samuti tuleb kokku lugeda kasutaja puhkusepäevade summa ja mitte lubada broneeringut kui olemasolevad päevad + soovitud päevad on rohkem kui 28
 
 ### Märkused
 
 Andmebaasis võiks olla järgmised tabelid:
 
   1. Kasutajate tabel: `kasutaja_id`, `kasutajanimi`, `parool`
-  1. Ruumide tabel: `reklaampinna_id`, `reklaampinna_nimi` (siia tabelisse võib lisada andmed käsitsi)
-  1. Broneeringute tabel: `bronni_id`, `reklaampinna_id`, `kasutaja_id`, `bronni_algus`, `bronni_lõpp`
+  1. Puhkuste tabel: `puhkuse_id`, `kasutaja_id`, `puhkuse_algus`, `puhkuse_lõpp`
 
-> Ajaväljad võiksid olla mõnes ajaformaadis (TIMESTAMP, DATETIME vms.), sellisel juhul on lihtsam aeg võrrelda
+> Ajaväljad võiksid olla mõnes ajaformaadis (TIMESTAMP, DATETIME vms.), sellisel juhul on lihtsam aega võrrelda
 
 ### Näide
 
-#### 1. Reklaampindade nimekiri
+#### 1. Puhkuste nimekiri
 
-| Pinna nimetus | |
-|----|----|
-| Suur plakat Pärnu maantee ääres | [Broneerima...](.) |
-| Väike plakatikoht supermarketi seinal | [Broneerima...](.) |
-| 600x300 px bänneripind tuntud portaalis | [Broneerima...](.) |
+| Kasutajanimi | Puhkuse algus | Puhkuse lõpp |
+|----|----|----|
+| peeter | 2016-03-01 | 2016-03-05 |
+| maarika | 2016-03-06 | 2016-03-12 |
+| juulius | 2016-03-20 | 2016-03-22 |
 
-#### 2. Reklaampinna detailvaade
-
-|  * |  |
-|--- | --- |
-| Reklaampinna nimetus | **Suur plakat Pärnu maantee ääres** |
-
-**Lisa oma broneering:**
+**Lisa oma puhkus:**
 ```
-[ 2016-01-01 00:00  ] – [ 2016-01-01 01:00  ]  [broneeri pind]
+[ 2016-01-01  ] – [ 2016-01-01  ]  [lisa puhkus]
 ```
 
-**Olemasolevad broneeringud:**
-
-| Broneeringu algus | Broneeringu lõpp |
-|----| ----|
-| 2016-03-01 00:00 | 2016-03-01 01:00 |
-| 2016-03-01 01:00 | 2016-03-01 02:00 |
-| 2016-03-01 02:00 | 2016-03-01 03:00 |
-
-#### 3. Broneeringu ebaõnnestumine
+#### 2. Puhkuse lisamise ebaõnnestumine
 
 ```
-Broneerimine ebaõnnestus: valitud ajal on reklaampind juba broneeritud
-[tagasi ruumide lehele]
+Broneerimine ebaõnnestus: valitud ajal on juba kellelgi puhkus
+[tagasi puhkuste lehele]
 ```
