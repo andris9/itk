@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, Sans-Serif;
+}
+
+.menyy {
+    margin-bottom: 20px;
+}
+
+.menyy ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menyy li {
+    padding: 5px 15px;
+    width: 8em;
+    background-color: #EEEEEE;
+    float: left;
+}
+
+.menyy a {
+    text-decoration: none;
+    color: blue;
+}
+
+.menyy a:hover {
+    text-decoration: underline;
+}
+
+.menyy li.valitud {
+    background: blue;
+}
+
+.menyy li.valitud a {
+    color: white;
+}
+
+.tabel {
+    border-spacing: 0;
+}
+
+.tabel caption {
+    font-size: 160%;
+}
+
+.tabel td, .tabel th {
+    border-top: 1px solid #AAAAAA;
+    padding: 5px 10px;
+}
+
+input[type="text"], input[type="password"] {
+    font-family: Arial, Sans-Serif;
+    font-size: 15px;
+    padding: 5px 10px;
+    width: 16em;
+    border: 1px dashed #AAAAAA;
+    border-radius: 3px;
+}

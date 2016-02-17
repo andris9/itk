@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Registreerimise vorm</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="vorm.css">
+</head>
+
+<body>
+
+    <div class="menyy">
+        <ul>
+            <li><a href="sisselogimine.html">Sisselogimine</a></li>
+            <li class="valitud"><a href="registreerimine.html">Registreerimine</a></li>
+            <li><a href="http://google.com">Google otsing</a></li>
+        </ul>
+        <div style="clear: left;"></div>
+    </div>
+
+    <form method="post" action="vorm.php">
+
+        <input type="hidden" name="aeg" value="2016-02-09">
+
+        <table class="tabel">
+            <caption>Registreerimise vorm</caption>
+
+            <tr>
+                <th>
+                    Soovitud kasutajanimi:
+                </th>
+                <td>
+                    <input type="text" name="username" placeholder="Kasutajanimi">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    Parool:
+                </th>
+                <td>
+                    <input type="password" name="password" placeholder="Parool">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    Korda parooli:
+                </th>
+                <td>
+                    <input type="password" name="password2" placeholder="Parool">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Registreeri</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>

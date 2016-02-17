@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Sisselogimise vorm</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="vorm.css">
+</head>
+
+<body>
+
+    <div class="menyy">
+        <ul>
+            <li class="valitud"><a href="sisselogimine.html">Sisselogimine</a></li>
+            <li><a href="registreerimine.html">Registreerimine</a></li>
+            <li><a href="http://google.com">Google otsing</a></li>
+        </ul>
+        <div style="clear: left;"></div>
+    </div>
+
+    <form method="post" action="vorm.php">
+
+        <table class="tabel">
+            <caption>Sisselogimise vorm</caption>
+
+            <tr>
+                <th>
+                    <label for="username-id">Kasutajanimi:</label>
+                </th>
+                <td>
+                    <input type="text" name="username" id="username-id" placeholder="Kasutajanimi">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    <label for="password-id">Parool:</label>
+                </th>
+                <td>
+                    <input type="password" name="password" id="password-id" placeholder="Parool">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <label>
+                        <input type="checkbox" name="remember_me" value="test"> Pea mind meeles
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Logi sisse</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>

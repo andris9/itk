@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Registreerimise vorm</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <form method="post" action="vorm.php">
+
+        <input type="hidden" name="aeg" value="2016-02-09">
+
+        <table border="1">
+            <caption>Registreerimise vorm</caption>
+
+            <tr>
+                <th>
+                    <label for="username-id">
+                        Soovitud kasutajanimi:
+                    </label>
+                </th>
+                <td>
+                    <input type="text" name="username" id="username-id" placeholder="Kasutajanimi" size="20">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    <label for="password-id">
+                        Parool:
+                    </label>
+                </th>
+                <td>
+                    <input type="password" name="password" id="password-id" placeholder="Parool" size="20">
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    <label for="password2-id">
+                        Korda parooli:
+                    </label>
+                </th>
+                <td>
+                    <input type="password" name="password2" id="password2-id" placeholder="Parool" size="20">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Registreeri</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+
+</html>
