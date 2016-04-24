@@ -4,7 +4,7 @@
 
 Kategooriate tabel koosneb kahest veerust
 
-| | Id  | Nimetus |
+| - | Id  | Nimetus |
 | ------ | ------------- | ------------- |
 | Tüüp | INT  | VARCHAR(100)  |
 | Atribuudid | UNSIGNED  | -  |
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `areinman__kategooriad` (
 
 Kaupade tabel koosneb kuuest veerust
 
-| | Id  | Nimetus | Kogus | Kategooria | Muudetud | Lisatud |
-| ------ | ------ | ------ | ------ | ------ | ------ |
+| - | Id  | Nimetus | Kogus | Kategooria | Muudetud | Lisatud |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | Tüüp | INT  | VARCHAR(100)  | INT | INT | TIMESTAMP | TIMESTAMP |
 | Atribuudid | UNSIGNED  | -  | - | UNSIGNED | `ON UPDATE CURRENT_TIMESTAMP` | - |
 | Vaikimisi | -  | -  | 0 | - | - | - |
