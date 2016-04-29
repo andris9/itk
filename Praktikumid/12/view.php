@@ -23,7 +23,7 @@
 
     <form id="lisa-vorm" method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
 
-    	<input type="hidden" name="action" value="add">
+        <input type="hidden" name="action" value="add">
 
         <p id="peida-nupp">
             <button type="button">Peida lisamise vorm</button>
@@ -65,27 +65,27 @@
         // koolon tsükli lõpus tähendab, et tsükkel koosneb HTML osast
         foreach (model_load() as $rida): ?>
 
-        	<tr>
-        		<td>
-        			<?=
+            <tr>
+                <td>
+                    <?=
                         // vältimaks pahatahtlikku XSS sisu, kus kasutaja sisestab õige
                         // info asemel <script> tag'i, peame tekstiväljundis asendama kõik HTML erisümbolid
                         htmlspecialchars($rida['Nimetus']);
                     ?>
-        		</td>
-        		<td>
-        			<?= $rida['Kogus']; ?>
-        		</td>
-        		<td>
+                </td>
+                <td>
+                    <?= $rida['Kogus']; ?>
+                </td>
+                <td>
 
-        			<form method="post" action="<?= $_SERVER['PHP_SELF'];?>">
-        				<input type="hidden" name="action" value="delete">
-        				<input type="hidden" name="id" value="<?= $rida['Id']; ?>">
-        				<button type="submit">Kustuta rida</button>
-        			</form>
+                    <form method="post" action="<?= $_SERVER['PHP_SELF'];?>">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="id" value="<?= $rida['Id']; ?>">
+                        <button type="submit">Kustuta rida</button>
+                    </form>
 
-        		</td>
-        	</tr>
+                </td>
+            </tr>
 
         <?php endforeach; ?>
 
