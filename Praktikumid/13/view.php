@@ -15,6 +15,14 @@
 
 <body>
 
+    <div style="float: right;">
+        <form method="post"  action="<?= $_SERVER['PHP_SELF']; ?>">
+            <input type="hidden" name="action" value="logout">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+            <button type="submit">Logi välja</button>
+        </form>
+    </div>
+
     <h1>Laoprogramm</h1>
 
     <p id="kuva-nupp">
@@ -24,6 +32,7 @@
     <form id="lisa-vorm" method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
 
         <input type="hidden" name="action" value="add">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
         <p id="peida-nupp">
             <button type="button">Peida lisamise vorm</button>
@@ -80,6 +89,7 @@
 
                     <form method="post" action="<?= $_SERVER['PHP_SELF'];?>">
                         <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
                         <input type="hidden" name="id" value="<?= $rida['Id']; ?>">
                         <button type="submit">Kustuta rida</button>
                     </form>

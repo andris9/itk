@@ -11,6 +11,7 @@
         <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>">
 
             <input type="hidden" name="action" value="register">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
             <table>
                 <tr>

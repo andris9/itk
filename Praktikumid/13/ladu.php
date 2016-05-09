@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+if (empty($_SESSION['crsf_token'])) {
+    $_SESSION['crsf_token'] = bin2hex(random_bytes(20));
+}
 
 // laeme andmete haldamise meetodid
 require 'model.php';
@@ -14,24 +17,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // $result muutuja indikeerib kas toimus mõni õnnestunud tegevus või mitte
     $result = false;
 
-    switch ($_POST['action']) {
+    if(!empty($_POST['csrf_token']) && $_POST['csrf_token'] != $_SESSION['crsf_token']){
+        switch ($_POST['action']) {
 
-        case 'add':
-            $nimetus = $_POST['nimetus'];
-            $kogus = intval($_POST['kogus']);
-            $result = controller_add($nimetus, $kogus);
-            break;
+            case 'add':
+                $nimetus = $_POST['nimetus'];
+                $kogus = intval($_POST['kogus']);
+                $result = controller_add($nimetus, $kogus);
+                break;
 
-        case 'delete':
-            $id = intval($_POST['id']);
-            $result = controller_delete($id);
-            break;
+            case 'delete':
+                $id = intval($_POST['id']);
+                $result = controller_delete($id);
+                break;
 
-        case 'register':
-            $kasutajanimi = $_POST['kasutajanimi'];
-            $parool = $_POST['parool'];
-            $result = controller_register($kasutajanimi, $parool);
-            break;
+            case 'register':
+                $kasutajanimi = $_POST['kasutajanimi'];
+                $parool = $_POST['parool'];
+                $result = controller_register($kasutajanimi, $parool);
+                break;
+
+            case 'logout':
+                $result = controller_logout();
+                break;
+        }
     }
 
     if ($result) {
@@ -61,6 +70,10 @@ if (!empty($_GET['view'])) {
             exit;
     }
 } else {
+    if (!controller_user()) {
+        header('Location: '.$_SERVER['PHP_SELF'].'?view=login');
+        exit;
+    }
     require 'view.php';
 }
 

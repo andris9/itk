@@ -75,3 +75,22 @@ function model_user_add($kasutajanimi, $parool)
 
     return $id;
 }
+
+function model_user_get($kasutajanimi, $parool)
+{
+    global $l;
+
+    $query = 'SELECT Id, Parool FROM areinman__kasutajad WHERE Kasutajanimi=? LIMIT 1';
+    $stmt = mysqli_prepare($l, $query);
+    mysqli_stmt_bind_param($stmt, 's', $kasutajanimi);
+
+    mysqli_stmt_execute($stmt);
+
+    mysqli_stmt_bind_result($stmt, $id, $hash);
+
+    mysqli_stmt_fetch($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return password_verify($parool, $hash) ? $id : false;
+}
