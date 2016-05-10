@@ -2,7 +2,7 @@
 
 session_start();
 if (empty($_SESSION['crsf_token'])) {
-    $_SESSION['crsf_token'] = bin2hex(random_bytes(20));
+    $_SESSION['crsf_token'] = bin2hex(openssl_random_pseudo_bytes(20));
 }
 
 // laeme andmete haldamise meetodid
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // $result muutuja indikeerib kas toimus mõni õnnestunud tegevus või mitte
     $result = false;
 
-    if(!empty($_POST['csrf_token']) && $_POST['csrf_token'] != $_SESSION['crsf_token']){
+    if (!empty($_POST['csrf_token']) && $_POST['csrf_token'] != $_SESSION['crsf_token']) {
         switch ($_POST['action']) {
 
             case 'add':
@@ -35,6 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $kasutajanimi = $_POST['kasutajanimi'];
                 $parool = $_POST['parool'];
                 $result = controller_register($kasutajanimi, $parool);
+                break;
+
+            case 'login':
+                $kasutajanimi = $_POST['kasutajanimi'];
+                $parool = $_POST['parool'];
+                $result = controller_login($kasutajanimi, $parool);
                 break;
 
             case 'logout':
