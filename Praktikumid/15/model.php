@@ -4,7 +4,7 @@ $host = 'localhost';
 $user = 'test';
 $pass = 't3st3r123';
 $db = 'test';
-$prefix = 'areinman__';
+$prefix = 'areinman';
 
 $l = mysqli_connect($host, $user, $pass, $db);
 mysqli_query($l, 'SET CHARACTER SET UTF8');
@@ -18,11 +18,11 @@ mysqli_query($l, 'SET CHARACTER SET UTF8');
  */
 function model_load($page)
 {
-    global $l;
+    global $l, $prefix;
     $max = 5;
     $start = ($page - 1) * $max;
 
-    $query = 'SELECT Id, Nimetus, Kogus FROM '.$prefix.'kaubad ORDER BY Nimetus ASC LIMIT ?,?';
+    $query = 'SELECT Id, Nimetus, Kogus FROM '.$prefix.'__kaubad ORDER BY Nimetus ASC LIMIT ?,?';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
@@ -56,9 +56,9 @@ function model_load($page)
  */
 function model_add($nimetus, $kogus)
 {
-    global $l;
+    global $l, $prefix;
 
-    $query = 'INSERT INTO '.$prefix.'kaubad (Nimetus, Kogus) VALUES (?, ?)';
+    $query = 'INSERT INTO '.$prefix.'__kaubad (Nimetus, Kogus) VALUES (?, ?)';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
@@ -84,9 +84,9 @@ function model_add($nimetus, $kogus)
  */
 function model_delete($id)
 {
-    global $l;
+    global $l, $prefix;
 
-    $query = 'DELETE FROM '.$prefix.'kaubad WHERE Id=? LIMIT 1';
+    $query = 'DELETE FROM '.$prefix.'__kaubad WHERE Id=? LIMIT 1';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
@@ -113,9 +113,9 @@ function model_delete($id)
  */
 function model_update($id, $kogus)
 {
-    global $l;
+    global $l, $prefix;
 
-    $query = 'UPDATE '.$prefix.'kaubad SET Kogus=? WHERE Id=? LIMIT 1';
+    $query = 'UPDATE '.$prefix.'__kaubad SET Kogus=? WHERE Id=? LIMIT 1';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
@@ -142,11 +142,11 @@ function model_update($id, $kogus)
  */
 function model_user_add($kasutajanimi, $parool)
 {
-    global $l;
+    global $l, $prefix;
 
     $hash = password_hash($parool, PASSWORD_DEFAULT);
 
-    $query = 'INSERT INTO '.$prefix.'kasutajad (Kasutajanimi, Parool) VALUES (?, ?)';
+    $query = 'INSERT INTO '.$prefix.'__kasutajad (Kasutajanimi, Parool) VALUES (?, ?)';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
@@ -173,9 +173,9 @@ function model_user_add($kasutajanimi, $parool)
  */
 function model_user_get($kasutajanimi, $parool)
 {
-    global $l;
+    global $l, $prefix;
 
-    $query = 'SELECT Id, Parool FROM '.$prefix.'kasutajad WHERE Kasutajanimi=? LIMIT 1';
+    $query = 'SELECT Id, Parool FROM '.$prefix.'__kasutajad WHERE Kasutajanimi=? LIMIT 1';
     $stmt = mysqli_prepare($l, $query);
     if (mysqli_error($l)) {
         echo mysqli_error($l);
